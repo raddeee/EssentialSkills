@@ -1,0 +1,13 @@
+name: EssentialSkills
+version: ${project.version}
+main: com.github.raddeee.essentialskills.EssentialSkills
+api-version: 1.16
+authors: [e]
+description: e
+commands:
+  skills:
+    description: Opens a Skill Menu
+    aliases: s
+  essentialskills:
+    description: Configs for Essential Skills
+    aliases: eskills
