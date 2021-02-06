@@ -8,15 +8,19 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class CutAll {
@@ -38,6 +42,12 @@ public class CutAll {
     }
 
     public static void CutAllFunc(Player player, BlockBreakEvent event) {
+
+        ItemStack player_axe = player.getInventory().getItemInMainHand();
+        ItemMeta axe_meta = player_axe.getItemMeta();
+        int damage;
+        int maxDurability = player_axe.getType().getMaxDurability();
+
         boolean canCutAll = false;
         Block block = event.getBlock();
         Material[] axes = {Material.WOODEN_AXE, Material.STONE_AXE, Material.IRON_AXE, Material.DIAMOND_AXE, Material.GOLDEN_AXE};
@@ -75,10 +85,15 @@ public class CutAll {
                 List<Block> blocks = new ArrayList<Block>();
                 blocks.add(block);
 
-                while (blocks.size() != 0) {
-                    for (int i = 0; i != blocks.size(); i++) {
+                boolean canloop = true;
+
+                while (blocks.size() != 0 && canloop) {
+                    for (int i = 0; i != blocks.size()&& canloop; i++) {
                         Location location = blocks.get(i).getLocation();
                         for (int i2 = 0; i2 != 6; i2++) {
+
+                            damage = ((Damageable) axe_meta).getDamage();
+
                             BlockFace[] face = {BlockFace.DOWN, BlockFace.EAST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.UP, BlockFace.WEST};
                             if (blocks.get(i).getRelative(face[i2]).getType() == Material.OAK_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.BIRCH_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.ACACIA_LOG ||
                                     blocks.get(i).getRelative(face[i2]).getType() == Material.DARK_OAK_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.JUNGLE_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.OAK_LEAVES ||
@@ -89,7 +104,18 @@ public class CutAll {
                             }
                             if (i2 == 5) {
                                 blocks.remove(i);
-                                player.getWorld().getBlockAt(location).breakNaturally(new ItemStack(Material.DIAMOND_AXE));
+                                if(damage + 2 >= maxDurability){
+                                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "The item is too damaged to use the skill!"));
+                                    canloop = false;
+                                    break;
+                                }else{
+                                    Random random = new Random();
+                                    if(axe_meta.getEnchantLevel(Enchantment.DURABILITY) * 20 <= random.nextInt(100)){
+                                        ((Damageable) axe_meta).setDamage(damage + 1);
+                                        player_axe.setItemMeta(axe_meta);
+                                    }
+                                    player.getWorld().getBlockAt(location).breakNaturally(new ItemStack(Material.DIAMOND_AXE));
+                                }
                             }
                         }
                     }

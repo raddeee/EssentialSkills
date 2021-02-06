@@ -99,7 +99,7 @@ public class ConfirmGUI {
         }
 
         objective.getScore(player.getName()).setScore(SkillLevel);
-        //player.setLevel(player.getLevel() - ReqLevel);
+        player.setLevel(player.getLevel() - ReqLevel);
         player.sendMessage(ChatColor.BOLD +  "You have obtained \" " + SkillName + ChatColor.RESET + "" + ChatColor.BOLD + " \" !");
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1 ,1);
 

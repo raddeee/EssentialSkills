@@ -6,11 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+
+import java.util.Random;
 
 public class DigAll {
 
@@ -40,6 +46,11 @@ public class DigAll {
         Scoreboard scoreboard = manager.getMainScoreboard();
         Objective objective = scoreboard.getObjective("digall");
         int score = objective.getScore(player.getName()).getScore();
+
+        ItemStack player_shovel = player.getInventory().getItemInMainHand();
+        ItemMeta shovel_meta = player_shovel.getItemMeta();
+        int damage;
+        int maxDurability = player_shovel.getType().getMaxDurability();
 
         if(score == 6 && inhandMaterial == shovel[0]){
             canMineAll = true;
@@ -71,10 +82,25 @@ public class DigAll {
                     int z = i % 5;
 
                     for (int i2 = 0; i2 != 5; i2++){
+
+                        damage = ((Damageable) shovel_meta).getDamage();
+
                         Block dirt = player.getWorld().getBlockAt(block.getLocation().clone().add(x - 2, i2, z - 2));
                         if(dirt.getType() == Material.DIRT || dirt.getType() == Material.GRASS_BLOCK || dirt.getType() == Material.COARSE_DIRT || dirt.getType() == Material.SAND
                                 || dirt.getType() == Material.GRAVEL || dirt.getType() == Material.PODZOL || dirt.getType() == Material.MYCELIUM || dirt.getType() == Material.GRASS_PATH){
-                            dirt.breakNaturally();
+
+                            if(damage + 2 >= maxDurability){
+                                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "The item is too damaged to use the skill!"));
+                                break;
+                            }else{
+                                Random random = new Random();
+                                if(shovel_meta.getEnchantLevel(Enchantment.DURABILITY) * 20 <= random.nextInt(100)){
+                                    ((Damageable) shovel_meta).setDamage(damage + 1);
+                                    player_shovel.setItemMeta(shovel_meta);
+                                }
+                                dirt.breakNaturally(new ItemStack(Material.DIAMOND_SHOVEL));
+                            }
+
                         }
                     }
                 }
