@@ -100,7 +100,7 @@ public class MineAll {
                     }
                 }
             }else if(block.getType() == Material.COAL_ORE || block.getType() == Material.IRON_ORE || block.getType() == Material.GOLD_ORE
-                    || block.getType() == Material.DIAMOND_ORE || block.getType() == Material.NETHER_QUARTZ_ORE || block.getType() == Material.NETHER_GOLD_ORE){
+                    || block.getType() == Material.DIAMOND_ORE || block.getType() == Material.NETHER_QUARTZ_ORE || block.getType() == Material.NETHER_GOLD_ORE || block.getType() == Material.NETHERRACK){
                 List<Block> blocks =  new ArrayList<Block>();
                 blocks.add(block);
 
@@ -113,7 +113,7 @@ public class MineAll {
                             damage = ((Damageable) pick_meta).getDamage();
                             BlockFace[] face = {BlockFace.DOWN,BlockFace.EAST,BlockFace.NORTH,BlockFace.SOUTH,BlockFace.UP,BlockFace.WEST};
                             if(blocks.get(i).getRelative(face[i2]).getType() == Material.COAL_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.IRON_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.GOLD_ORE ||
-                                    blocks.get(i).getRelative(face[i2]).getType() == Material.DIAMOND_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.NETHER_QUARTZ_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.NETHER_GOLD_ORE) {
+                                    blocks.get(i).getRelative(face[i2]).getType() == Material.DIAMOND_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.NETHER_QUARTZ_ORE || blocks.get(i).getRelative(face[i2]).getType() == Material.NETHER_GOLD_ORE || block.getType() == Material.NETHERRACK) {
                                 blocks.add(blocks.get(i).getRelative(face[i2]));
                                 blocks = blocks.stream().distinct().collect(Collectors.toList());
                             }
