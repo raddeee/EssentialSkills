@@ -99,7 +99,7 @@ public class MineAll {
                         }
                     }
                 }
-            }else if(block.getType() == Material.COAL_ORE || block.getType() == Material.IRON_ORE || block.getType() == Material.GOLD_ORE
+            }else if(block.getType() == Material.COAL_ORE || block.getType() == Material.IRON_ORE || block.getType() == Material.GOLD_ORE || block.getType() == Material.REDSTONE_ORE
                     || block.getType() == Material.DIAMOND_ORE || block.getType() == Material.NETHER_QUARTZ_ORE || block.getType() == Material.NETHER_GOLD_ORE || block.getType() == Material.NETHERRACK){
                 List<Block> blocks =  new ArrayList<Block>();
                 blocks.add(block);
