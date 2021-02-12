@@ -50,7 +50,7 @@ public class CutAll {
 
         boolean canCutAll = false;
         Block block = event.getBlock();
-        Material[] axes = {Material.WOODEN_AXE, Material.STONE_AXE, Material.IRON_AXE, Material.DIAMOND_AXE, Material.GOLDEN_AXE};
+        Material[] axes = {Material.WOODEN_AXE, Material.STONE_AXE, Material.IRON_AXE, Material.DIAMOND_AXE, Material.NETHERITE_AXE};
         Material inhandMaterial = player.getInventory().getItemInMainHand().getType();
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -81,7 +81,7 @@ public class CutAll {
 
         if (canCutAll) {
             if (block.getType() == Material.OAK_LOG || block.getType() == Material.BIRCH_LOG || block.getType() == Material.ACACIA_LOG
-                    || block.getType() == Material.DARK_OAK_LOG || block.getType() == Material.JUNGLE_LOG) {
+                    || block.getType() == Material.DARK_OAK_LOG || block.getType() == Material.JUNGLE_LOG || block.getType() == Material.SPRUCE_LOG) {
                 List<Block> blocks = new ArrayList<Block>();
                 blocks.add(block);
 
@@ -98,7 +98,8 @@ public class CutAll {
                             if (blocks.get(i).getRelative(face[i2]).getType() == Material.OAK_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.BIRCH_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.ACACIA_LOG ||
                                     blocks.get(i).getRelative(face[i2]).getType() == Material.DARK_OAK_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.JUNGLE_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.OAK_LEAVES ||
                                     blocks.get(i).getRelative(face[i2]).getType() == Material.BIRCH_LEAVES || blocks.get(i).getRelative(face[i2]).getType() == Material.ACACIA_LEAVES ||
-                                    blocks.get(i).getRelative(face[i2]).getType() == Material.DARK_OAK_LEAVES || blocks.get(i).getRelative(face[i2]).getType() == Material.JUNGLE_LEAVES) {
+                                    blocks.get(i).getRelative(face[i2]).getType() == Material.DARK_OAK_LEAVES || blocks.get(i).getRelative(face[i2]).getType() == Material.JUNGLE_LEAVES ||
+                                    blocks.get(i).getRelative(face[i2]).getType() == Material.SPRUCE_LOG || blocks.get(i).getRelative(face[i2]).getType() == Material.SPRUCE_LEAVES) {
                                 blocks.add(blocks.get(i).getRelative(face[i2]));
                                 blocks = blocks.stream().distinct().collect(Collectors.toList());
                             }

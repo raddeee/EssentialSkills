@@ -23,11 +23,11 @@ public class MiningGUI {
         Inventory gui = Bukkit.createInventory(player, 54, ChatColor.DARK_GREEN+ "" + ChatColor.BOLD + "Mining Skills");
 
         ItemStack mineallE = new ItemStack(Material.GOLDEN_PICKAXE);
-        ItemStack[] mineall = {new ItemStack(Material.WOODEN_PICKAXE), new ItemStack(Material.STONE_PICKAXE), new ItemStack(Material.IRON_PICKAXE), new ItemStack(Material.DIAMOND_PICKAXE), new ItemStack(Material.GOLDEN_PICKAXE)};
+        ItemStack[] mineall = {new ItemStack(Material.WOODEN_PICKAXE), new ItemStack(Material.STONE_PICKAXE), new ItemStack(Material.IRON_PICKAXE), new ItemStack(Material.DIAMOND_PICKAXE), new ItemStack(Material.NETHERITE_PICKAXE)};
         ItemStack cutallE = new ItemStack(Material.GOLDEN_AXE);
-        ItemStack[] cutall = {new ItemStack(Material.WOODEN_AXE), new ItemStack(Material.STONE_AXE), new ItemStack(Material.IRON_AXE), new ItemStack(Material.DIAMOND_AXE), new ItemStack(Material.GOLDEN_AXE)};
+        ItemStack[] cutall = {new ItemStack(Material.WOODEN_AXE), new ItemStack(Material.STONE_AXE), new ItemStack(Material.IRON_AXE), new ItemStack(Material.DIAMOND_AXE), new ItemStack(Material.NETHERITE_AXE)};
         ItemStack digallE = new ItemStack(Material.GOLDEN_SHOVEL);
-        ItemStack[] digall = {new ItemStack(Material.WOODEN_SHOVEL), new ItemStack(Material.STONE_SHOVEL), new ItemStack(Material.IRON_SHOVEL), new ItemStack(Material.DIAMOND_SHOVEL), new ItemStack(Material.GOLDEN_SHOVEL)};
+        ItemStack[] digall = {new ItemStack(Material.WOODEN_SHOVEL), new ItemStack(Material.STONE_SHOVEL), new ItemStack(Material.IRON_SHOVEL), new ItemStack(Material.DIAMOND_SHOVEL), new ItemStack(Material.NETHERITE_SHOVEL)};
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
@@ -72,7 +72,7 @@ public class MiningGUI {
             ItemMeta mineall_meta = mineall[i].getItemMeta();
             mineall_meta.setDisplayName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Mine All" + ChatColor.GRAY + ": Level " + (i + 1));
             ArrayList<String> mineall_lore = new ArrayList<>();
-            String[] pickaxe = {"Wooden Pickaxe", "Stone Pickaxe", "Iron Pickaxe", "Diamond Pickaxe", "Golden Pickaxe"};
+            String[] pickaxe = {"Wooden Pickaxe", "Stone Pickaxe", "Iron Pickaxe", "Diamond Pickaxe", "Netherite Pickaxe"};
             mineall_lore.addAll(Arrays.asList(ChatColor.DARK_GREEN + "Mine All" + ChatColor.GRAY + " will be able", ChatColor.GRAY + "to activate with a " + ChatColor.AQUA + pickaxe[i], "", ChatColor.GRAY + "Requires " + ChatColor.GREEN + 10 + ChatColor.GRAY +  " Levels."));
             if(objective.getScore(player.getName()).getScore() >= (i + 1)) {
                 mineall_meta.addEnchant(RegisterGlitter.GLITTER, 0, true);
@@ -85,7 +85,7 @@ public class MiningGUI {
             ItemMeta cutall_meta = cutall[i].getItemMeta();
             cutall_meta.setDisplayName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Cut All" + ChatColor.GRAY + ": Level " + (i + 1));
             ArrayList<String> cutall_lore = new ArrayList<>();
-            String[] axe = {"Wooden Axe", "Stone Axe", "Iron Axe", "Diamond Axe", "Golden Axe"};
+            String[] axe = {"Wooden Axe", "Stone Axe", "Iron Axe", "Diamond Axe", "Netherite Axe"};
             cutall_lore.addAll(Arrays.asList(ChatColor.DARK_GREEN + "Cut All" + ChatColor.GRAY + " will be able", ChatColor.GRAY + "to activate with a " + ChatColor.AQUA + axe[i], "", ChatColor.GRAY + "Requires " + ChatColor.GREEN + 10 + ChatColor.GRAY +  " Levels."));
             objective = scoreboard.getObjective("cutall");
             if(objective.getScore(player.getName()).getScore() >= (i + 1)) {
@@ -99,7 +99,7 @@ public class MiningGUI {
             ItemMeta digall_meta = digall[i].getItemMeta();
             digall_meta.setDisplayName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Dig All" + ChatColor.GRAY + ": Level " + (i + 1));
             ArrayList<String> digall_lore = new ArrayList<>();
-            String[] shovel = {"Wooden Shovel", "Stone Shovel", "Iron Shovel", "Diamond Shovel", "Golden Shovel"};
+            String[] shovel = {"Wooden Shovel", "Stone Shovel", "Iron Shovel", "Diamond Shovel", "Netherite Shovel"};
             digall_lore.addAll(Arrays.asList(ChatColor.DARK_GREEN + "Dig All" + ChatColor.GRAY + " will be able", ChatColor.GRAY + "to activate with a " + ChatColor.AQUA + shovel[i], "", ChatColor.GRAY + "Requires " + ChatColor.GREEN + 10 + ChatColor.GRAY +  " Levels."));
             objective = scoreboard.getObjective("digall");
             if(objective.getScore(player.getName()).getScore() >= (i + 1)) {

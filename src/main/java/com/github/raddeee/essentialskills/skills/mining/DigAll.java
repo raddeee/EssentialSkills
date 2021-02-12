@@ -39,7 +39,7 @@ public class DigAll {
     public static void DigAllFunc(Player player, BlockBreakEvent event){
         boolean canMineAll = false;
         Block block = event.getBlock();
-        Material[] shovel = {Material.WOODEN_SHOVEL, Material.STONE_SHOVEL, Material.IRON_SHOVEL, Material.DIAMOND_SHOVEL, Material.GOLDEN_SHOVEL};
+        Material[] shovel = {Material.WOODEN_SHOVEL, Material.STONE_SHOVEL, Material.IRON_SHOVEL, Material.DIAMOND_SHOVEL, Material.NETHERITE_SHOVEL};
         Material inhandMaterial = player.getInventory().getItemInMainHand().getType();
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();

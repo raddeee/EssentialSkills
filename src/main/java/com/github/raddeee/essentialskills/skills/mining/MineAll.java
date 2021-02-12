@@ -42,7 +42,7 @@ public class MineAll {
     public static void MineAllFunc(Player player, BlockBreakEvent event){
         boolean canMineAll = false;
         Block block = event.getBlock();
-        Material[] pickaxes = {Material.WOODEN_PICKAXE, Material.STONE_PICKAXE, Material.IRON_PICKAXE, Material.DIAMOND_PICKAXE, Material.GOLDEN_PICKAXE};
+        Material[] pickaxes = {Material.WOODEN_PICKAXE, Material.STONE_PICKAXE, Material.IRON_PICKAXE, Material.DIAMOND_PICKAXE, Material.NETHERITE_PICKAXE};
         Material inhandMaterial = player.getInventory().getItemInMainHand().getType();
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
